@@ -3,6 +3,8 @@ import "./App.css";
 import { createTodo, markComplete } from "./utils";
 import Todo from "./Todo";
 // import Axios from "axios";
+import store from './redux/store'
+
 
 function App() {
 	const [todos, setTodos] = useState([]);
@@ -32,7 +34,10 @@ function App() {
 		let newObject = createTodo(value);
 		let newArray = [newObject, ...todos];
 		setTodos(newArray);
-		// sendData(newArray);
+    // sendData(newArray);
+    console.log('State: ', store.getState())
+    console.log(todos)
+
 	};
 
 	// Grabs text value from form and call addTodo function
