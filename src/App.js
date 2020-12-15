@@ -8,7 +8,7 @@ function App() {
 	const [todos, setTodos] = useState([]);
 	const [value, setValue] = useState("");
 
-	const dburl = "https://task-list-6a646.firebaseio.com/.json";
+	// const dburl = "https://task-list-6a646.firebaseio.com/.json";
 
 	// Fetches data from Firebase Realtime Database on page load
 	// const fetchData = async () => {
