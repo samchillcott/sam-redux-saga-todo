@@ -7,11 +7,13 @@ export const selectSong = song => {
     };
 };
 
-export const addTodo = (id, task) => {
+export const addTodo = () => {
     return {
         type: 'ADD_TODO',
-        payload: [
-            
-        ]
+        payload: { 
+            isComplete: false,
+            key: "3d3f3d67-eaa7-4890-baad-5adf34b927e0",
+            text: "cccc"
+ }
     }
 }
