@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import "./App.css";
-import { createTodo, markComplete } from "./utils";
+import { markComplete } from "./utils";
 import Todo from "./Todo";
 // import Axios from "axios";
 import store from './redux/store'
+// import { v4 as uuidv4 } from 'uuid';
+import { connect } from 'react-redux';
+import { addTodo, completeTodo } from "./redux/actions";
 
-
-function App() {
-	const [todos, setTodos] = useState([]);
+function App(props) {
+	const { todos, addTodo, changeState } = props;
+	console.log({props});
+	// const [todos, setTodos] = useState([]);
 	const [value, setValue] = useState("");
 
 	// const dburl = "https://task-list-6a646.firebaseio.com/.json";
@@ -30,27 +34,37 @@ function App() {
 	// };
 
 	// Creates a new todo item, adds to to the main state/array, sends to db
-	const addTodo = (value) => {
-		let newObject = createTodo(value);
-		let newArray = [newObject, ...todos];
-		setTodos(newArray);
-    // sendData(newArray);
-    console.log('State: ', store.getState())
-    console.log(todos)
+// 	const addTodo = (value) => {
+// 		const createTodo = (text) => {
+// 	return {
+// 		text: text,
+// 		isComplete: false,
+// 		key: uuidv4(),
+// 	};
+// };
+// 		let newObject = createTodo(value);
+// 		let newArray = [newObject, ...todos];
+// 		setTodos(newArray);
+//     // sendData(newArray);
+//     console.log('State: ', store.getState())
+//     // console.log(newArray)
 
-	};
+// 	};
 
 	// Grabs text value from form and call addTodo function
 	const submitHandler = (e) => {
+		// console.log(value);
 		e.preventDefault();
 		addTodo(value);
+		console.log('State: ', store.getState())
 		setValue("");
 	};
 
 	// Marks item complete and updates main array
 	const completeTodo = (todo) => {
-		markComplete(todo);
-		setTodos([...todos]);
+		console.log("complete fired");
+		changeState(todo);
+		// setTodos([...todos]);
 		// sendData(todos);
 	};
 
@@ -59,14 +73,14 @@ function App() {
 		let newArray = [...todos];
 		let index = newArray.findIndex((x) => x.key === todo.key);
 		newArray.splice(index, 1);
-		setTodos(newArray);
+		// setTodos(newArray);
 		// sendData(newArray);
 	};
 
 	const editTodo = (e, todo) => {
 		todo.text = e.target.value;
 		let newArray = [...todos];
-		setTodos(newArray);
+		// setTodos(newArray);
 		// sendData(newArray);
 	};
 
@@ -118,4 +132,14 @@ function App() {
 	);
 }
 
-export default App;
+
+const mapStateToProps = ({ todos }) => ({
+	todos 
+});
+
+const mapDispatchToProps = (dispatch) => ({
+	addTodo: (payload) => dispatch(addTodo(payload)),
+	changeState: (payload) => dispatch(completeTodo(payload))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
