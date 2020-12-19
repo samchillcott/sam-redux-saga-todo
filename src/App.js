@@ -1,17 +1,14 @@
 import React, { useState } from "react";
 import "./App.css";
-import { markComplete } from "./utils";
 import Todo from "./Todo";
 // import Axios from "axios";
 import store from './redux/store'
-// import { v4 as uuidv4 } from 'uuid';
 import { connect } from 'react-redux';
 import { addTodo, completeTodo } from "./redux/actions";
 
 function App(props) {
 	const { todos, addTodo, changeState } = props;
 	console.log({props});
-	// const [todos, setTodos] = useState([]);
 	const [value, setValue] = useState("");
 
 	// const dburl = "https://task-list-6a646.firebaseio.com/.json";
