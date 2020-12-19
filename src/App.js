@@ -4,10 +4,12 @@ import Todo from "./Todo";
 // import Axios from "axios";
 import store from './redux/store'
 import { connect } from 'react-redux';
-import { addTodo, completeTodo } from "./redux/actions";
+import { addTodo, completeTodo, removeTodo } from "./redux/actions";
+
+/* eslint-disable react/prop-types */
 
 function App(props) {
-	const { todos, addTodo, changeState } = props;
+	const { todos, addTodo, changeState, removeTodo } = props;
 	console.log({props});
 	const [value, setValue] = useState("");
 
@@ -30,23 +32,6 @@ function App(props) {
 	// 	Axios.put(dburl, arr);
 	// };
 
-	// Creates a new todo item, adds to to the main state/array, sends to db
-// 	const addTodo = (value) => {
-// 		const createTodo = (text) => {
-// 	return {
-// 		text: text,
-// 		isComplete: false,
-// 		key: uuidv4(),
-// 	};
-// };
-// 		let newObject = createTodo(value);
-// 		let newArray = [newObject, ...todos];
-// 		setTodos(newArray);
-//     // sendData(newArray);
-//     console.log('State: ', store.getState())
-//     // console.log(newArray)
-
-// 	};
 
 	// Grabs text value from form and call addTodo function
 	const submitHandler = (e) => {
@@ -66,13 +51,13 @@ function App(props) {
 	};
 
 	//Remove todo - find index of matching key from the array and then remove it from the array
-	const removeTodo = (todo) => {
-		let newArray = [...todos];
-		let index = newArray.findIndex((x) => x.key === todo.key);
-		newArray.splice(index, 1);
-		// setTodos(newArray);
-		// sendData(newArray);
-	};
+	// const removeTodo = (todo) => {
+	// 	let newArray = [...todos];
+	// 	let index = newArray.findIndex((x) => x.key === todo.key);
+	// 	newArray.splice(index, 1);
+	// 	// setTodos(newArray);
+	// 	// sendData(newArray);
+	// };
 
 	const editTodo = (e, todo) => {
 		todo.text = e.target.value;
@@ -136,7 +121,8 @@ const mapStateToProps = ({ todos }) => ({
 
 const mapDispatchToProps = (dispatch) => ({
 	addTodo: (payload) => dispatch(addTodo(payload)),
-	changeState: (payload) => dispatch(completeTodo(payload))
+	changeState: (payload) => dispatch(completeTodo(payload)),
+	removeTodo: (payload) => dispatch(removeTodo(payload))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
