@@ -9,7 +9,7 @@ import { addTodo, completeTodo, removeTodo } from "./redux/actions";
 /* eslint-disable react/prop-types */
 
 function App(props) {
-	const { todos, addTodo, changeState, removeTodo } = props;
+	const { todos, addTodo, completeTodo, removeTodo } = props;
 	console.log({props});
 	const [value, setValue] = useState("");
 
@@ -43,12 +43,12 @@ function App(props) {
 	};
 
 	// Marks item complete and updates main array
-	const completeTodo = (todo) => {
-		console.log("complete fired");
-		changeState(todo);
-		// setTodos([...todos]);
-		// sendData(todos);
-	};
+	// const completeTodo = (todo) => {
+	// 	console.log("complete fired");
+	// 	changeState(todo);
+	// 	// setTodos([...todos]);
+	// 	// sendData(todos);
+	// };
 
 	//Remove todo - find index of matching key from the array and then remove it from the array
 	// const removeTodo = (todo) => {
@@ -121,7 +121,7 @@ const mapStateToProps = ({ todos }) => ({
 
 const mapDispatchToProps = (dispatch) => ({
 	addTodo: (payload) => dispatch(addTodo(payload)),
-	changeState: (payload) => dispatch(completeTodo(payload)),
+	completeTodo: (payload) => dispatch(completeTodo(payload)),
 	removeTodo: (payload) => dispatch(removeTodo(payload))
 });
 

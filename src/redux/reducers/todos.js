@@ -19,7 +19,12 @@ const todoReducer = (state = initialState, action) => {
         });
         return newState;
     } else if (action.type === 'REMOVE_TODO') {
-        console.log({payload: action.payload},"remove todo fired from reducer");
+        console.log({payload: action.payload},"removeTodo fired from reducer");
+        const newState = [...state];
+        let index = newState.findIndex((x) => x.key === action.payload.key);
+        console.log({index});
+        newState.splice(index, 1);
+        return newState;
     }
     return state
 }
