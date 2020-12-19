@@ -18,6 +18,8 @@ const todoReducer = (state = initialState, action) => {
             } 
         });
         return newState;
+    } else if (action.type === 'REMOVE_TODO') {
+        console.log({payload: action.payload},"remove todo fired from reducer");
     }
     return state
 }
