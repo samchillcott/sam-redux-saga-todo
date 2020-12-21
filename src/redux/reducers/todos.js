@@ -28,12 +28,8 @@ const todoReducer = (state = initialState, action) => {
             return newState;
         case 'EDIT_TODO':
             console.log({payload: action.payload},"edit fired from reducer");
-            newState.forEach(element => {
-                if (element.key === action.payload.key) {
-                    element.text = action.payload.target.value;
-                    console.log('State: ', state)
-                } 
-             });
+            action.payload.todo.text = action.payload.newText;
+            console.log("edit in reducer did somethhing")
             return newState;
         default:
             return state

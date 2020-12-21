@@ -7,23 +7,23 @@ export const addTodo = (obj) => {
     }
 }
 
-export const completeTodo = (obj) => {
+export const completeTodo = (todo) => {
     return {
         type: 'COMPLETE_TODO',
-        payload: obj
+        payload: todo
     }
 }
 
-export const removeTodo = (obj) => {
+export const removeTodo = (todo) => {
     return {
         type: 'REMOVE_TODO',
-        payload: obj
+        payload: todo
     }
 }
 
-export const editTodo = (value, obj) => {
+export const editTodo = (todo) => {
     return {
         type: 'EDIT_TODO',
-        payload: {value: value.target.value, obj: obj}
+        payload: {todo, newText: "hard coded action data"}
     }
 }

@@ -4,13 +4,11 @@ import Todo from "./Todo";
 // import Axios from "axios";
 import store from './redux/store'
 import { connect } from 'react-redux';
-import { addTodo, completeTodo, removeTodo } from "./redux/actions";
-
-/* eslint-disable react/prop-types */
+import { addTodo, completeTodo, removeTodo, editTodo } from "./redux/actions";
 
 function App(props) {
-	const { todos, addTodo, completeTodo, removeTodo } = props;
-	console.log({props});
+	const { todos, addTodo, completeTodo, removeTodo, editTodo } = props;
+	// console.log({props});
 	const [value, setValue] = useState("");
 
 	// const dburl = "https://task-list-6a646.firebaseio.com/.json";
@@ -35,36 +33,24 @@ function App(props) {
 
 	// Grabs text value from form and call addTodo function
 	const submitHandler = (e) => {
-		// console.log(value);
+		// console.log("submithandler fired", value);
 		e.preventDefault();
 		addTodo(value);
-		console.log('State: ', store.getState())
+		// console.log('State: ', store.getState())
 		setValue("");
 	};
 
-	// Marks item complete and updates main array
-	// const completeTodo = (todo) => {
-	// 	console.log("complete fired");
-	// 	changeState(todo);
-	// 	// setTodos([...todos]);
-	// 	// sendData(todos);
-	// };
-
-	//Remove todo - find index of matching key from the array and then remove it from the array
-	// const removeTodo = (todo) => {
-	// 	let newArray = [...todos];
-	// 	let index = newArray.findIndex((x) => x.key === todo.key);
-	// 	newArray.splice(index, 1);
+	// const editTodo = (e, todo) => {
+	// 	todo.text = e.target.value;
+	// 	console.log("from App.js");
+	// 	// let newState = [...todos];
 	// 	// setTodos(newArray);
 	// 	// sendData(newArray);
 	// };
 
-	const editTodo = (e, todo) => {
-		todo.text = e.target.value;
-		let newArray = [...todos];
-		// setTodos(newArray);
-		// sendData(newArray);
-	};
+	// store.subscribe(() => {
+	// 	console.log("store updated", store.getState());
+	// })
 
 	// Filtering for 2 Lists
 	const doneTasks = todos.filter((todo) => todo.isComplete === true);
@@ -122,7 +108,8 @@ const mapStateToProps = ({ todos }) => ({
 const mapDispatchToProps = (dispatch) => ({
 	addTodo: (payload) => dispatch(addTodo(payload)),
 	completeTodo: (payload) => dispatch(completeTodo(payload)),
-	removeTodo: (payload) => dispatch(removeTodo(payload))
+	removeTodo: (payload) => dispatch(removeTodo(payload)),
+	editTodo: (payload) => dispatch(editTodo(payload))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

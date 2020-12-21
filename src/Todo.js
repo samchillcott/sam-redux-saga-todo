@@ -1,9 +1,14 @@
 import React from "react";
+import { connect } from 'react-redux';
 
 function Todo({ todo, completeTodo, removeTodo, editTodo }) {
 	const changeHandler = (e) => {
-		editTodo(e, todo);
-	};
+		console.log("changeHandler in Todo fired");
+		let newText = e.target.value;
+		console.log(newText);
+		editTodo(todo, newText);
+		console.log(todo);
+	}
 
 	return (
 		<div>
@@ -16,4 +21,8 @@ function Todo({ todo, completeTodo, removeTodo, editTodo }) {
 	);
 }
 
-export default Todo;
+const mapStateToProps = ({ todos }) => ({
+	todos 
+});
+
+export default connect(mapStateToProps)(Todo);
