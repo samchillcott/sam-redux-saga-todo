@@ -30,27 +30,12 @@ function App(props) {
 	// 	Axios.put(dburl, arr);
 	// };
 
-
 	// Grabs text value from form and call addTodo function
 	const submitHandler = (e) => {
-		// console.log("submithandler fired", value);
 		e.preventDefault();
 		addTodo(value);
-		// console.log('State: ', store.getState())
 		setValue("");
 	};
-
-	// const editTodo = (e, todo) => {
-	// 	todo.text = e.target.value;
-	// 	console.log("from App.js");
-	// 	// let newState = [...todos];
-	// 	// setTodos(newArray);
-	// 	// sendData(newArray);
-	// };
-
-	// store.subscribe(() => {
-	// 	console.log("store updated", store.getState());
-	// })
 
 	// Filtering for 2 Lists
 	const doneTasks = todos.filter((todo) => todo.isComplete === true);

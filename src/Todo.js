@@ -4,10 +4,8 @@ import { connect } from 'react-redux';
 function Todo({ todo, completeTodo, removeTodo, editTodo }) {
 	const changeHandler = (e) => {
 		console.log("changeHandler in Todo fired");
-		let newText = e.target.value;
-		console.log(newText);
+		const newText = e.target.value;
 		editTodo(todo, newText);
-		console.log(todo);
 	}
 
 	return (

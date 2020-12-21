@@ -21,9 +21,9 @@ export const removeTodo = (todo) => {
     }
 }
 
-export const editTodo = (todo) => {
+export const editTodo = (todo, newText) => {
     return {
         type: 'EDIT_TODO',
-        payload: {todo, newText: "hard coded action data"}
+        payload: {todo, newText}
     }
 }
