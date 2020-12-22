@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./App.css";
 import Todo from "./Todo";
 // import Axios from "axios";
-import store from './redux/store'
 import { connect } from 'react-redux';
 import { addTodo, completeTodo, removeTodo, editTodo } from "./redux/actions";
 

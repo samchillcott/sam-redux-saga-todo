@@ -21,9 +21,9 @@ export const removeTodo = (todo) => {
     }
 }
 
-export const editTodo = (todo, newText) => {
+export const editTodo = (newTodo) => {
     return {
         type: 'EDIT_TODO',
-        payload: {todo, newText}
+        payload: newTodo
     }
 }
