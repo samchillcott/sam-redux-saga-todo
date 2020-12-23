@@ -1,13 +1,12 @@
 import { v4 as uuidv4 } from 'uuid';
-import { sendData } from '../../api';
 
 const initialState = [];
 
-const todoReducer = (state = initialState, action) => {
-    const newState = [...state];
+const todoReducer = (todos = initialState, action) => {
+    const newState = [...todos];
     switch (action.type) {
         case 'ADD_TODO':
-            return [...state, 
+            return [...todos, 
                 {isComplete: false,
                 key: uuidv4(),
                 text: action.payload
@@ -27,7 +26,7 @@ const todoReducer = (state = initialState, action) => {
             newState.forEach(element => {
                 if (element.key === action.payload.key) {
                     element.isComplete = !element.isComplete
-                    console.log('State: ', state)
+                    // console.log('State: ', todos)
                 } 
             });
             return newState;
@@ -35,11 +34,11 @@ const todoReducer = (state = initialState, action) => {
             console.log({payload: action.payload},"removeTodo fired from reducer");
             let index = newState.findIndex((x) => x.key === action.payload.key);
             newState.splice(index, 1);
-            console.log('State: ', state)
+            // console.log('State: ', state)
             return newState;
         case 'EDIT_TODO':
             console.log({payload: action.payload},"edit fired from reducer");
-            return state.map(todo => {
+            return todos.map(todo => {
                if (todo.key === action.payload.key) {
                    return action.payload
                } else {
@@ -47,7 +46,7 @@ const todoReducer = (state = initialState, action) => {
                }
             })
         default:
-            return state
+            return todos
     }
 }
 

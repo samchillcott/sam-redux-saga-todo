@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import Todo from "./Todo";
-import { sendData } from './api';
 import { connect } from 'react-redux';
 import { addTodo, completeTodo, removeTodo, editTodo, loadTodos } from "./redux/actions";
 
