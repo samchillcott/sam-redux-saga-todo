@@ -27,3 +27,16 @@ export const editTodo = (newTodo) => {
         payload: newTodo
     }
 }
+
+export const loadTodos = () => {
+    return {
+        type: 'LOAD_TODOS'
+    }
+}
+
+export const saveTodos = (todos) => {
+    return {
+        type: 'SAVE_TODOS',
+        payload: todos
+    }
+}
