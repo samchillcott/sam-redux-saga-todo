@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import Todo from "./Todo";
-// import Axios from "axios";
+import Axios from "axios";
 import { connect } from 'react-redux';
 import { addTodo, completeTodo, removeTodo, editTodo } from "./redux/actions";
 
@@ -10,7 +10,7 @@ function App(props) {
 	// console.log({props});
 	const [value, setValue] = useState("");
 
-	// const dburl = "https://task-list-6a646.firebaseio.com/.json";
+	const dburl = "https://task-list-6a646.firebaseio.com/.json";
 
 	// Fetches data from Firebase Realtime Database on page load
 	// const fetchData = async () => {
@@ -24,16 +24,18 @@ function App(props) {
 	// 	fetchData();
 	// }, []);
 
-	// // Sends data to Firebase Realtime Database
-	// const sendData = (arr) => {
-	// 	Axios.put(dburl, arr);
-	// };
+	// Sends data to Firebase Realtime Database
+	const sendData = (arr) => {
+		Axios.put(dburl, arr);
+	};
+
 
 	// Grabs text value from form and call addTodo function
 	const submitHandler = (e) => {
 		e.preventDefault();
 		addTodo(value);
 		setValue("");
+		sendData(["hard code"])
 	};
 
 	// Filtering for 2 Lists
