@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Todo from "./Todo";
 import { sendData } from './api';
 import { connect } from 'react-redux';
-import { addTodo, completeTodo, removeTodo, editTodo } from "./redux/actions";
+import { addTodo, completeTodo, removeTodo, editTodo, loadTodos } from "./redux/actions";
 
 function App(props) {
 	const { todos, addTodo, completeTodo, removeTodo, editTodo } = props;
@@ -20,7 +20,7 @@ function App(props) {
 	// };
 
 	// useEffect(() => {
-	// 	fetchData();
+	// 	loadTodos();
 	// }, []);
 
 	// Sends data to Firebase Realtime Database
@@ -34,7 +34,6 @@ function App(props) {
 		e.preventDefault();
 		addTodo(value);
 		setValue("");
-		sendData(["hard code"])
 	};
 
 	// Filtering for 2 Lists

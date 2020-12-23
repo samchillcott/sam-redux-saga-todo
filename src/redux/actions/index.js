@@ -29,12 +29,14 @@ export const editTodo = (newTodo) => {
 }
 
 export const loadTodos = () => {
+    console.log("loadTodos action fired");
     return {
         type: 'LOAD_TODOS'
     }
 }
 
 export const saveTodos = (todos) => {
+      console.log("saveTodos action fired");
     return {
         type: 'SAVE_TODOS',
         payload: todos

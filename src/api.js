@@ -8,5 +8,6 @@ export const getTodos = async () => {
 }
 
 export const sendData = (arr) => {
-		Axios.put(dburl, arr);
-	};
+        Axios.put(dburl, arr);
+        console.log("sent to db",arr);
+};
