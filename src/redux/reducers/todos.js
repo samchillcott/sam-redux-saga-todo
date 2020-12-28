@@ -13,8 +13,6 @@ const todoReducer = (todos = initialState, action) => {
                 }];
         case 'COMPLETE_TODO':
             console.log({payload: action.payload},"completeTodo from reducer");
-            // console.log("current state", todos);
-            // console.log(action.payload);
             return todos.map(todo => {
                if (todo.key === action.payload.key) {
                     action.payload.isComplete = !action.payload.isComplete
