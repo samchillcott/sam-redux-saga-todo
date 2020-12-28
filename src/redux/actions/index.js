@@ -1,9 +1,9 @@
 //Action Creator
-export const addTodo = (obj) => {
+export const addTodo = (todoText) => {
     // return an action
     return {
         type: 'ADD_TODO',
-        payload: obj
+        payload: todoText
     }
 }
 
@@ -28,15 +28,16 @@ export const editTodo = (newTodo) => {
     }
 }
 
-export const loadTodos = () => {
-    console.log("loadTodos action fired");
+export const loadTodos = (newTodos) => {
+    // console.log("loadTodos action fired");
     return {
-        type: 'LOAD_TODOS'
+        type: 'LOAD_TODOS',
+        payload: newTodos
     }
 }
 
 export const saveTodos = (todos) => {
-      console.log("saveTodos action fired");
+    //   console.log("saveTodos action fired");
     return {
         type: 'SAVE_TODOS',
         payload: todos

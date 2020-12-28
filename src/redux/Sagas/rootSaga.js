@@ -1,8 +1,6 @@
 import { fork } from 'redux-saga/effects'
-import { loadTodosWatcher } from './loadTodosSaga'
-import { saveTodosWatcher } from './saveTodosSaga'
+import { todosSagas } from './todosSagas'
 
 export default function* rootSaga() {
-  yield fork(loadTodosWatcher)
-  yield fork(saveTodosWatcher)
+  yield fork(todosSagas)
 }

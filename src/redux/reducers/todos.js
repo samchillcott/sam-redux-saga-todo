@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
+// import { sendData } from '../../api';
 
 const initialState = [];
 
@@ -13,23 +14,16 @@ const todoReducer = (todos = initialState, action) => {
                 }];
         case 'COMPLETE_TODO':
             console.log({payload: action.payload},"completeTodo from reducer");
-            // return state.map(todo => {
-            //    if (todo.key === action.payload.key) {
-            //        return action.payload
-            //    } else {
-            //        return todo
-            //    }
-            // action.payload.isComplete = !action.payload.isComplete
-
-            // });
-            
-            newState.forEach(element => {
-                if (element.key === action.payload.key) {
-                    element.isComplete = !element.isComplete
-                    // console.log('State: ', todos)
-                } 
+            // console.log("current state", todos);
+            // console.log(action.payload);
+            return todos.map(todo => {
+               if (todo.key === action.payload.key) {
+                    action.payload.isComplete = !action.payload.isComplete
+                    return action.payload   
+               } else {
+                   return todo
+               }
             });
-            return newState;
         case 'REMOVE_TODO':
             console.log({payload: action.payload},"removeTodo fired from reducer");
             let index = newState.findIndex((x) => x.key === action.payload.key);
@@ -45,6 +39,9 @@ const todoReducer = (todos = initialState, action) => {
                    return todo
                }
             })
+        case 'LOAD_TODOS':
+            // console.log({payload: action.payload});
+            return action.payload
         default:
             return todos
     }
