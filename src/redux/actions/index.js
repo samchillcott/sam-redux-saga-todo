@@ -28,18 +28,19 @@ export const editTodo = (newTodo) => {
     }
 }
 
-export const loadTodos = (newTodos) => {
-    // console.log("loadTodos action fired");
+export const downloadTodos = (newTodos) => {
+    console.log("downloadTodos action fired");
     return {
-        type: 'LOAD_TODOS',
+        type: 'DOWNLOAD_TODOS',
         payload: newTodos
+        // payload: "fake coded newTodos"
     }
 }
 
-export const saveTodos = (todos) => {
-    //   console.log("saveTodos action fired");
-    return {
-        type: 'SAVE_TODOS',
-        payload: todos
-    }
-}
+// export const uploadTodos = (todos) => {
+//       console.log("upoloadTodos action fired");
+//     return {
+//         type: 'UPLOAD_TODOS',
+//         payload: todos
+//     }
+// }

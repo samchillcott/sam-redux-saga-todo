@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import Todo from "./Todo";
 import { connect } from 'react-redux';
-import { addTodo, completeTodo, removeTodo, editTodo, loadTodos } from "./redux/actions";
+import { addTodo, completeTodo, removeTodo, editTodo, downloadTodos } from "./redux/actions";
+import { fetchTodos} from './api';
 
 function App(props) {
-	const { todos, addTodo, completeTodo, removeTodo, editTodo } = props;
+	const { todos, addTodo, completeTodo, removeTodo, editTodo, downloadTodos } = props;
 	// console.log({props});
 	const [value, setValue] = useState("");
 
@@ -17,9 +18,9 @@ function App(props) {
 	// 	}
 	// };
 
-	// useEffect(() => {
-	// 	loadTodos();
-	// }, []);
+	useEffect(() => {
+		downloadTodos();
+	}, []);
 
 	// Sends data to Firebase Realtime Database
 	// const sendData = (arr) => {
@@ -35,6 +36,7 @@ function App(props) {
 	};
 
 	// Filtering for 2 Lists
+	
 	const doneTasks = todos.filter((todo) => todo.isComplete === true);
 	const incompleteTasks = todos.filter((todo) => todo.isComplete === false);
 
@@ -91,7 +93,8 @@ const mapDispatchToProps = (dispatch) => ({
 	addTodo: (payload) => dispatch(addTodo(payload)),
 	completeTodo: (payload) => dispatch(completeTodo(payload)),
 	removeTodo: (payload) => dispatch(removeTodo(payload)),
-	editTodo: (payload) => dispatch(editTodo(payload))
+	editTodo: (payload) => dispatch(editTodo(payload)),
+	downloadTodos: (payload) => dispatch(downloadTodos(payload))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

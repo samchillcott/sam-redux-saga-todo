@@ -1,16 +1,18 @@
 import { v4 as uuidv4 } from 'uuid';
+import { saveTodos } from '../../api';
 // import { sendData } from '../../api';
 
 const initialState = [];
-
 const todoReducer = (todos = initialState, action) => {
     switch (action.type) {
         case 'ADD_TODO':
-            return [...todos, 
+            const newState = [...todos, 
                 {isComplete: false,
                 key: uuidv4(),
                 text: action.payload
                 }];
+            saveTodos(newState);
+            return newState
         case 'COMPLETE_TODO':
             console.log({payload: action.payload},"completeTodo from reducer");
             return todos.map(todo => {
@@ -33,8 +35,8 @@ const todoReducer = (todos = initialState, action) => {
                    return todo
                }
             })
-        case 'LOAD_TODOS':
-            // console.log({payload: action.payload});
+        case 'DOWNLOAD_TODOS':
+            console.log({payload: action.payload},"download fired from reducer");
             return action.payload
         default:
             return todos
