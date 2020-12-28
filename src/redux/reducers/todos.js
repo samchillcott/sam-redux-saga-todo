@@ -4,7 +4,6 @@ import { v4 as uuidv4 } from 'uuid';
 const initialState = [];
 
 const todoReducer = (todos = initialState, action) => {
-    const newState = [...todos];
     switch (action.type) {
         case 'ADD_TODO':
             return [...todos, 
@@ -26,10 +25,7 @@ const todoReducer = (todos = initialState, action) => {
             });
         case 'REMOVE_TODO':
             console.log({payload: action.payload},"removeTodo fired from reducer");
-            let index = newState.findIndex((x) => x.key === action.payload.key);
-            newState.splice(index, 1);
-            // console.log('State: ', state)
-            return newState;
+            return todos.filter(todo => todo.key !== action.payload.key)
         case 'EDIT_TODO':
             console.log({payload: action.payload},"edit fired from reducer");
             return todos.map(todo => {

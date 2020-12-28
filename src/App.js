@@ -9,7 +9,6 @@ function App(props) {
 	// console.log({props});
 	const [value, setValue] = useState("");
 
-
 	// Fetches data from Firebase Realtime Database on page load
 	// const fetchData = async () => {
 	// 	const returnObject = await Axios.get(dburl);
