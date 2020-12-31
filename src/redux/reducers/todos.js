@@ -1,6 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
 import { saveTodos } from '../../api';
-// import { sendData } from '../../api';
 
 const initialState = [];
 const todoReducer = (todos = initialState, action) => {
@@ -35,7 +34,7 @@ const todoReducer = (todos = initialState, action) => {
                    return todo
                }
             })
-        case 'DOWNLOAD_TODOS':
+        case 'USE_DOWNLOAD_TODOS':
             console.log({payload: action.payload},"download fired from reducer");
             return action.payload
         default:
