@@ -8,6 +8,9 @@ export const fetchTodos = async () => {
         const response = await Axios.get(dburl);
         const newTodos = response.data
         console.log(newTodos);
+        if (newTodos === null) {
+            return []
+        }
         return newTodos
     } catch (error) {}
 }
