@@ -4,7 +4,6 @@ import { fetchTodos } from '../../api';
 function* handleDownloadTodos() {
     console.log("handleDownloadTodos worker saga fired");
     const response = yield call(fetchTodos);
-    console.log({response});
     yield put({type: 'USE_DOWNLOAD_TODOS', payload: response})
 }
 

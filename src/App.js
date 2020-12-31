@@ -10,14 +10,7 @@ function App(props) {
 	const [value, setValue] = useState("");
 	const dispatch = useDispatch();
 
-	// Fetches data from Firebase Realtime Database on page load
-	// const fetchData = async () => {
-	// 	const returnObject = await Axios.get(dburl);
-	// 	if (returnObject.data !== null) {
-	// 		setTodos(returnObject.data);
-	// 	}
-	// };
-
+	// Pulls saved data from Firebase on initialization
 	useEffect(() => {
 		dispatch({type: 'DOWNLOAD_TODOS'});
 	}, []);
